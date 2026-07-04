@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forest — цветы и кофе в Шерегеше</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ----- RESET & VARIABLES ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green: #2D4A22;
+      --green-light: #3A5F40;
+      --cream: #F5F0E6;
+      --rose: #D4A5A5;
+      --terracotta: #C87A5A;
+      --shadow: 0 12px 30px rgba(45, 74, 34, 0.08);
+      --radius: 24px;
+      --transition: 0.25s ease;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--green);
+      font-family: 'Raleway', sans-serif;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, .logo, .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ----- HEADER ----- */
+    .header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(45, 74, 34, 0.08);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: var(--terracotta);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--green);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      padding: 4px 0;
+      transition: color var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--rose);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--green-light);
+    }
+
+    .btn-order {
+      background: var(--rose);
+      border: none;
+      color: #fff;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      padding: 10px 28px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 12px rgba(212, 165, 165, 0.3);
+      white-space: nowrap;
+    }
+
+    .btn-order:hover {
+      background: #c08a8a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212, 165, 165, 0.4);
+    }
+
+    /* Burger */
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .burger span {
+      display: block;
+      width: 28px;
+      height: 2.5px;
+      background: var(--green);
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    /* ----- PAGES (SPA) ----- */
+    .page {
+      display: none;
+      padding: 40px 0 60px;
+      animation: fadeUp 0.4s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(16px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ----- BUTTONS ----- */
+    .btn {
+      display: inline-block;
+      background: var(--green-light);
+      color: #fff;
+      padding: 12px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      font-family: 'Raleway', sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 14px rgba(58, 95, 64, 0.25);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(58, 95, 64, 0.35);
+      background: #2D4A22;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--green-light);
+      border: 2px solid var(--green-light);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--green-light);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(58, 95, 64, 0.25);
+    }
+
+    .btn-rose {
+      background: var(--rose);
+      box-shadow: 0 4px 14px rgba(212, 165, 165, 0.3);
+    }
+
+    .btn-rose:hover {
+      background: #c08a8a;
+      box-shadow: 0 8px 24px rgba(212, 165, 165, 0.4);
+    }
+
+    /* ----- HERO (Главная) ----- */
+    .hero {
+      background: linear-gradient(135deg, #3A5F40 0%, #2D4A22 100%);
+      border-radius: var(--radius);
+      padding: 64px 52px;
+      color: #fff;
+      background-image: url('https://picsum.photos/id/1043/1400/600');
+      background-size: cover;
+      background-position: center 30%;
+      position: relative;
+      min-height: 440px;
+      margin-bottom: 48px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(45, 74, 34, 0.55);
+      border-radius: var(--radius);
+      backdrop-filter: brightness(0.9);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+    }
+
+    .hero-title {
+      font-size: 3.4rem;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* About */
+    .about-section {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 40px 44px;
+      box-shadow: var(--shadow);
+      margin-bottom: 48px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 40px;
+    }
+
+    .about-section h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .about-section p {
+      font-size: 1.05rem;
+      color: #3d5a3a;
+    }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    .feature-item .icon {
+      font-size: 2rem;
+      width: 44px;
+      text-align: center;
+      color: var(--terracotta);
+    }
+
+    /* ----- CARDS (меню / букеты) ----- */
+    .section-title {
+      font-size: 2.6rem;
+      margin-bottom: 6px;
+    }
+
+    .section-sub {
+      color: #5f7a5a;
+      margin-bottom: 32px;
+      font-size: 1.1rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(45, 74, 34, 0.12);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #e8e0d4;
+    }
+
+    .card-body {
+      padding: 20px 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .card-price {
+      font-weight: 600;
+      color: var(--terracotta);
+      margin: 6px 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: #5f7a5a;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .card .btn-order-sm {
+      background: var(--rose);
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 0;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      width: 100%;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .card .btn-order-sm:hover {
+      background: #c08a8a;
+      transform: scale(1.02);
+    }
+
+    .category-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin: 40px 0 18px;
+      color: var(--green);
+      border-left: 6px solid var(--rose);
+      padding-left: 18px;
+    }
+
+    /* ----- КОНТАКТЫ ----- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      background: #fff;
+      padding: 36px 44px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-top: 16px;
+    }
+
+    .contact-item {
+      margin-bottom: 20px;
+    }
+
+    .contact-item strong {
+      display: block;
+      font-weight: 600;
+      color: var(--green-light);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+    }
+
+    .contact-item .value {
+      font-size: 1.1rem;
+    }
+
+    .map-placeholder {
+      background: #eae3d8;
+      border-radius: var(--radius);
+      padding: 40px 24px;
+      text-align: center;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      color: var(--green);
+    }
+
+    .map-placeholder .btn {
+      background: var(--green-light);
+      color: #fff;
+      padding: 10px 32px;
+    }
+
+    /* ----- MODAL ----- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: #fff;
+      max-width: 440px;
+      width: 92%;
+      padding: 36px 32px 32px;
+      border-radius: 28px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: fadeUp 0.3s ease;
+    }
+
+    .modal h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .modal label {
+      font-weight: 500;
+      display: block;
+      margin: 16px 0 4px;
+      font-size: 0.9rem;
+      color: var(--green);
+    }
+
+    .modal input,
+    .modal textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e0d8cc;
+      border-radius: 16px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 1rem;
+      background: #faf8f5;
+      transition: border var(--transition);
+    }
+
+    .modal input:focus,
+    .modal textarea:focus {
+      outline: none;
+      border-color: var(--green-light);
+    }
+
+    .modal .btn {
+      width: 100%;
+      margin-top: 22px;
+      background: var(--green-light);
+      color: #fff;
+      border: none;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      color: #999;
+      background: none;
+      border: none;
+      transition: color var(--transition);
+    }
+
+    .modal-close:hover {
+      color: var(--green);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--green);
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 60px;
+      font-weight: 500;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      transition: all 0.4s ease;
+      z-index: 1000;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ----- АДАПТИВ ----- */
+    @media (max-width: 900px) {
+      .about-section {
+        grid-template-columns: 1fr;
+        padding: 32px 28px;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        padding: 28px 24px;
+      }
+      .hero-title {
+        font-size: 2.6rem;
+      }
+      .hero {
+        padding: 44px 32px;
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 68px;
+        left: 16px;
+        right: 16px;
+        padding: 24px 28px;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        gap: 16px;
+        border: 1px solid rgba(45, 74, 34, 0.06);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+      .nav-wrapper {
+        gap: 12px;
+      }
+
+      .btn-order {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+      .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.7rem;
+      }
+      .hero {
+        padding: 32px 20px;
+        min-height: 260px;
+      }
+      .container {
+        padding: 0 16px;
+      }
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .card-img {
+        height: 140px;
+      }
+      .about-section {
+        padding: 24px 18px;
+      }
+      .modal {
+        padding: 28px 20px;
+      }
+      .toast {
+        white-space: normal;
+        max-width: 90%;
+        text-align: center;
+        padding: 14px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <a href="#" class="logo" id="logoLink">Forest<span>.</span></a>
+    <div class="nav-wrapper">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" data-page="home" class="active">Главная</a></li>
+        <li><a href="#" data-page="menu">Меню</a></li>
+        <li><a href="#" data-page="bouquets">Букеты</a></li>
+        <li><a href="#" data-page="contacts">Контакты</a></li>
+      </ul>
+      <button class="btn-order" id="headerOrderBtn">Заказать</button>
+      <button class="burger" id="burgerBtn" aria-label="меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGES -->
+<main>
+  <!-- ГЛАВНАЯ -->
+  <section class="page active" id="page-home">
+    <div class="container">
+      <div class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title">Forest. Бутик цветов и кофе в Шерегеше</h1>
+          <p class="hero-sub">Сухоцветы, авторские напитки и уютная терраса</p>
+          <div class="hero-buttons">
+            <a href="#" class="btn" data-page="menu">Смотреть меню</a>
+            <a href="#" class="btn btn-outline" data-page="bouquets">Выбрать букет</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <div>
+          <h2>О нас</h2>
+          <p>Forest — это место, где природа встречается с искусством. Мы создаем букеты из сухоцветов, которые будут радовать вас годами, и готовим напитки с душой. Летом ждем вас на уютной террасе, где можно насладиться кофе в компании своего питомца. Доставка по Шерегешу — для вашего удобства.</p>
+        </div>
+        <div class="features">
+          <div class="feature-item"><span class="icon">🌾</span> Сухоцветы ручной работы</div>
+          <div class="feature-item"><span class="icon">☕</span> Напитки на любой вкус</div>
+          <div class="feature-item"><span class="icon">🌿</span> Терраса и свежий воздух</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- МЕНЮ -->
+  <section class="page" id="page-menu">
+    <div class="container">
+      <h2 class="section-title">Наше меню</h2>
+      <p class="section-sub">Классика, авторские рецепты и сезонные новинки</p>
+      <div id="menuContainer"></div>
+    </div>
+  </section>
+
+  <!-- БУКЕТЫ -->
+  <section class="page" id="page-bouquets">
+    <div class="container">
+      <h2 class="section-title">Букеты из сухоцветов</h2>
+      <p class="section-sub">Вечные цветы, которые не требуют ухода. Идеальный подарок или украшение для дома.</p>
+      <div class="card-grid" id="bouquetGrid"></div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section class="page" id="page-contacts">
+    <div class="container">
+      <h2 class="section-title">Как нас найти</h2>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-item">
+            <strong>Адрес</strong>
+            <div class="value">г. Шерегеш, ул. Центральная, д. 1</div>
+          </div>
+          <div class="contact-item">
+            <strong>Режим работы</strong>
+            <div class="value">Ежедневно с 9:00 до 21:00</div>
+          </div>
+          <div class="contact-item">
+            <strong>Телефон</strong>
+            <div class="value">+7 (999) 123-45-67</div>
+          </div>
+          <div class="contact-item">
+            <strong>Способы оплаты</strong>
+            <div class="value">Оплата картой, наличный расчет, оплата по QR-коду</div>
+          </div>
+        </div>
+        <div class="map-placeholder">
+          <div style="font-size: 1.1rem; font-weight: 500;">Карта будет вставлена сюда</div>
+          <a href="#" class="btn" onclick="alert('Ссылка на 2ГИС будет добавлена позже'); return false;">Проложить маршрут</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" id="modalCloseBtn">&times;</button>
+    <h2>Оставьте заявку</h2>
+    <label>Имя</label>
+    <input type="text" id="formName" placeholder="Ваше имя">
+    <label>Телефон</label>
+    <input type="text" id="formPhone" placeholder="+7 (___) ___-__-__">
+    <label>Комментарий</label>
+    <textarea id="formComment" rows="3" placeholder="Ваши пожелания"></textarea>
+    <button class="btn" id="formSubmitBtn">Отправить</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toastMessage">Спасибо! Мы свяжемся с вами в ближайшее время.</div>
+
+<script>
+  (function() {
+    // ----- ДАННЫЕ МЕНЮ -----
+    const menuData = [
+      { category: 'Классический кофе', items: [
+        { name: 'Экспресс', price: '150' },
+        { name: 'Американо', price: '180 / 220 / 260' },
+        { name: 'Флэт Уайт', price: '250' },
+        { name: 'Капучино', price: '220 / 260 / 330' },
+        { name: 'Латте', price: '250 / 290' },
+        { name: 'Раф', price: '320 / 360' },
+        { name: 'Воронка', price: '250' }
+      ]},
+      { category: 'Авторский кофе', items: [
+        { name: 'Соленая карамель', price: '330 / 360' },
+        { name: 'Халвичный', price: '330 / 360' },
+        { name: 'Арахисовый', price: '330 / 360' },
+        { name: 'Апельсиновый', price: '330 / 360' }
+      ]},
+      { category: 'Не кофе', items: [
+        { name: 'Матча', price: '200 / 220 / 260' },
+        { name: 'Какао', price: '100 / 150 / 200' },
+        { name: 'Чай таежный', price: '100 / 150 / 200' }
+      ]},
+      { category: 'Летнее', items: [
+        { name: 'Экспресс тоник', price: '250' },
+        { name: 'Бамбл', price: '300' },
+        { name: 'Айс Латте', price: '250' },
+        { name: 'Айс Латте Матча', price: '250' },
+        { name: 'Смузи', price: '300' },
+        { name: 'Милкшейк', price: '250' },
+        { name: 'Лимонад', price: '200 / 250' },
+        { name: 'Фреш цитрус', price: '200 / 300' }
+      ]}
+    ];
+
+    // ----- ДАННЫЕ БУКЕТОВ -----
+    const bouquetList = [
+      { name: 'Лавандовое поле', price: 'от 1500 руб.' },
+      { name: 'Осенний вальс', price: 'от 1800 руб.' },
+      { name: 'Степной ветер', price: 'от 1350 руб.' },
+      { name: 'Лесная сказка', price: 'от 2200 руб.' },
+      { name: 'Нежность', price: 'от 1600 руб.' },
+      { name: 'Терракотовый закат', price: 'от 1900 руб.' }
+    ];
+
+    // ----- DOM -----
+    const pages = {
+      home: document.getElementById('page-home'),
+      menu: document.getElementById('page-menu'),
+      bouquets: document.getElementById('page-bouquets'),
+      contacts: document.getElementById('page-contacts')
+    };
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const burgerBtn = document.getElementById('burgerBtn');
+    const navList = document.getElementById('navLinks');
+    const modal = document.getElementById('orderModal');
+    const toast = document.getElementById('toastMessage');
+
+    // ----- RENDER MENU -----
+    function renderMenu() {
+      const container = document.getElementById('menuContainer');
+      container.innerHTML = '';
+      menuData.forEach(cat => {
+        const title = document.createElement('div');
+        title.className = 'category-label';
+        title.textContent = cat.category;
+        container.appendChild(title);
+
+        const grid = document.createElement('div');
+        grid.className = 'card-grid';
+        cat.items.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          const img = document.createElement('img');
+          img.className = 'card-img';
+          img.src = 'https://picsum.photos/seed/' + encodeURIComponent(cat.category + item.name) + '/400/300';
+          img.alt = item.name;
+          img.loading = 'lazy';
+          card.appendChild(img);
+
+          const body = document.createElement('div');
+          body.className = 'card-body';
+          const titleEl = document.createElement('div');
+          titleEl.className = 'card-title';
+          titleEl.textContent = item.name;
+          const price = document.createElement('div');
+          price.className = 'card-price';
+          price.textContent = item.price + ' ₽';
+          const desc = document.createElement('div');
+          desc.className = 'card-desc';
+          desc.textContent = 'фото напитка';
+          const btn = document.createElement('button');
+          btn.className = 'btn-order-sm';
+          btn.textContent = 'Заказать';
+          btn.addEventListener('click', (e) => { e.stopPropagation(); openModal(); });
+
+          body.appendChild(titleEl);
+          body.appendChild(price);
+          body.appendChild(desc);
+          body.appendChild(btn);
+          card.appendChild(body);
+          grid.appendChild(card);
+        });
+        container.appendChild(grid);
+      });
+    }
+
+    // ----- RENDER BOUQUETS -----
+    function renderBouquets() {
+      const grid = document.getElementById('bouquetGrid');
+      grid.innerHTML = '';
+      bouquetList.forEach(b => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const img = document.createElement('img');
+        img.className = 'card-img';
+        img.src = 'https://picsum.photos/seed/' + encodeURIComponent(b.name) + '/400/300';
+        img.alt = b.name;
+        img.loading = 'lazy';
+        card.appendChild(img);
+
+        const body = document.createElement('div');
+        body.className = 'card-body';
+        const title = document.createElement('div');
+        title.className = 'card-title';
+        title.textContent = b.name;
+        const price = document.createElement('div');
+        price.className = 'card-price';
+        price.textContent = b.price;
+        const btn = document.createElement('button');
+        btn.className = 'btn-order-sm';
+        btn.textContent = 'Заказать';
+        btn.addEventListener('click', (e) => { e.stopPropagation(); openModal(); });
+
+        body.appendChild(title);
+        body.appendChild(price);
+        body.appendChild(btn);
+        card.appendChild(body);
+        grid.appendChild(card);
+      });
+    }
+
+    // ----- NAVIGATION -----
+    function navigate(pageId) {
+      Object.values(pages).forEach(p => p.classList.remove('active'));
+      if (pages[pageId]) pages[pageId].classList.add('active');
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.dataset.page === pageId) link.classList.add('active');
+      });
+
+      navList.classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ----- MODAL / TOAST -----
+    function openModal() {
+      modal.classList.add('open');
+      document.getElementById('formName').value = '';
+      document.getElementById('formPhone').value = '';
+      document.getElementById('formComment').value = '';
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+    }
+
+    function showToast() {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    // ----- EVENTS -----
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = link.dataset.page;
+        if (page) navigate(page);
+      });
+    });
+
+    document.querySelectorAll('[data-page]').forEach(el => {
+      if (el.tagName === 'A' && el.dataset.page) {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const page = el.dataset.page;
+          if (page) navigate(page);
+        });
+      }
+    });
+
+    burgerBtn.addEventListener('click', () => {
+      navList.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.header') && navList.classList.contains('open')) {
+        navList.classList.remove('open');
+      }
+    });
+
+    document.getElementById('headerOrderBtn').addEventListener('click', openModal);
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.getElementById('formSubmitBtn').addEventListener('click', () => {
+      closeModal();
+      showToast();
+    });
+
+    document.getElementById('logoLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      navigate('home');
+    });
+
+    // ----- INIT -----
+    renderMenu();
+    renderBouquets();
+    navigate('home');
+  })();
+</script>
+<!-- 
+  === КОММЕНТАРИИ ДЛЯ ЗАМЕНЫ ===
+  - Адрес: строка "г. Шерегеш, ул. Центральная, д. 1" (раздел Контакты)
+  - Телефон: "+7 (999) 123-45-67" (раздел Контакты)
+  - Ссылка на 2ГИС: в обработчике клика на кнопку "Проложить маршрут"
+  - Изображения-заглушки: picsum.photos, можно заменить на свои URL
+-->
+</body>
+</html>
