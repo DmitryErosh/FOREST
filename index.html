@@ -24,7 +24,7 @@
       --terracotta: #C87A5A;
       --shadow: 0 12px 30px rgba(45, 74, 34, 0.08);
       --radius: 24px;
-      --transition: 0.25s ease;
+      --transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     body {
@@ -32,6 +32,7 @@
       color: var(--green);
       font-family: 'Raleway', sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     h1, h2, h3, .logo, .hero-title {
@@ -273,6 +274,113 @@
       gap: 16px;
     }
 
+    /* ----- FLOWER GALLERY (scroll animation) ----- */
+    .flower-gallery {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 40px 44px;
+      box-shadow: var(--shadow);
+      margin-bottom: 48px;
+    }
+
+    .flower-gallery h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .flower-gallery .subtitle {
+      text-align: center;
+      color: #5f7a5a;
+      margin-bottom: 36px;
+      font-size: 1.05rem;
+    }
+
+    .flower-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .flower-item {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      padding: 20px;
+      border-radius: 20px;
+      background: var(--cream);
+    }
+
+    .flower-item.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .flower-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .flower-item .flower-img {
+      flex: 0 0 300px;
+      height: 300px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .flower-item .flower-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .flower-item:hover .flower-img img {
+      transform: scale(1.05);
+    }
+
+    .flower-item .flower-info {
+      flex: 1;
+    }
+
+    .flower-item .flower-info .badge {
+      display: inline-block;
+      background: var(--rose);
+      color: #fff;
+      padding: 4px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .flower-item .flower-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .flower-item .flower-info p {
+      color: #5f7a5a;
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .flower-item .flower-info .price-tag {
+      display: inline-block;
+      background: var(--green-light);
+      color: #fff;
+      padding: 6px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
     /* About */
     .about-section {
       background: #fff;
@@ -314,6 +422,73 @@
       width: 44px;
       text-align: center;
       color: var(--terracotta);
+    }
+
+    /* ----- GALLERY PAGE (новая страница) ----- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 32px;
+      margin-top: 16px;
+    }
+
+    .gallery-card {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(45, 74, 34, 0.12);
+    }
+
+    .gallery-card .gallery-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      background: #e8e0d4;
+    }
+
+    .gallery-card .gallery-body {
+      padding: 24px 26px 28px;
+    }
+
+    .gallery-card .gallery-body .gallery-tag {
+      display: inline-block;
+      background: var(--rose);
+      color: #fff;
+      padding: 4px 16px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .gallery-card .gallery-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .gallery-card .gallery-body p {
+      color: #5f7a5a;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    .gallery-card .gallery-body .gallery-quote {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 2px solid var(--cream);
+      color: var(--terracotta);
+      font-weight: 500;
+      font-size: 0.95rem;
     }
 
     /* ----- CARDS (меню / букеты) ----- */
@@ -587,6 +762,23 @@
         padding: 44px 32px;
         min-height: 320px;
       }
+      .flower-item {
+        flex-direction: column !important;
+        gap: 20px;
+        padding: 16px;
+      }
+      .flower-item .flower-img {
+        flex: 0 0 auto;
+        width: 100%;
+        height: 250px;
+      }
+      .flower-gallery {
+        padding: 24px 20px;
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+      }
     }
 
     @media (max-width: 760px) {
@@ -632,6 +824,16 @@
       .section-title {
         font-size: 2rem;
       }
+      .flower-item .flower-info h3 {
+        font-size: 1.4rem;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .gallery-card .gallery-img {
+        height: 220px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -664,6 +866,18 @@
         text-align: center;
         padding: 14px 24px;
       }
+      .flower-item .flower-img {
+        height: 200px;
+      }
+      .flower-gallery {
+        padding: 16px 12px;
+      }
+      .gallery-card .gallery-img {
+        height: 180px;
+      }
+      .gallery-card .gallery-body {
+        padding: 18px 18px 22px;
+      }
     }
   </style>
 </head>
@@ -676,6 +890,7 @@
     <div class="nav-wrapper">
       <ul class="nav-links" id="navLinks">
         <li><a href="#" data-page="home" class="active">Главная</a></li>
+        <li><a href="#" data-page="gallery">Галерея</a></li>
         <li><a href="#" data-page="menu">Меню</a></li>
         <li><a href="#" data-page="bouquets">Букеты</a></li>
         <li><a href="#" data-page="contacts">Контакты</a></li>
@@ -704,6 +919,17 @@
         </div>
       </div>
 
+      <div class="flower-gallery">
+        <h2>Наши цветы</h2>
+        <p class="subtitle">От простых до незабываемых — каждый цветок рассказывает свою историю</p>
+        <div class="flower-list" id="flowerPreview">
+          <!-- Цветы добавляются скриптом -->
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+          <a href="#" class="btn btn-rose" data-page="gallery">Смотреть галерею</a>
+        </div>
+      </div>
+
       <div class="about-section">
         <div>
           <h2>О нас</h2>
@@ -714,6 +940,17 @@
           <div class="feature-item"><span class="icon">☕</span> Напитки на любой вкус</div>
           <div class="feature-item"><span class="icon">🌿</span> Терраса и свежий воздух</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ГАЛЕРЕЯ (новая страница) -->
+  <section class="page" id="page-gallery">
+    <div class="container">
+      <h2 class="section-title">Наша галерея</h2>
+      <p class="section-sub">Каждое фото — это история, наполненная теплом, ароматами и вдохновением</p>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Галерея добавляется скриптом -->
       </div>
     </div>
   </section>
@@ -788,6 +1025,112 @@
 
 <script>
   (function() {
+    // ----- ДАННЫЕ ДЛЯ ГАЛЕРЕИ (с красивыми описаниями) -----
+    const galleryData = [
+      {
+        title: 'Утренний кофе в лесу',
+        tag: 'Атмосфера',
+        description: 'Вас ждёт освежающий прохладный утренний кофе, сваренный на открытом воздухе. Аромат хвои и свежесваренного эспрессо создают идеальный баланс для начала нового дня. Позвольте себе насладиться моментом, когда природа просыпается вместе с вами.',
+        quote: 'Согрейся в такой пасмурный день чашкой ароматного кофе — и мир заиграет новыми красками.',
+        img: 'https://picsum.photos/seed/forestmorning/600/400'
+      },
+      {
+        title: 'Букет для вдохновения',
+        tag: 'Цветы',
+        description: 'Этот букет понравится не только твоей второй половинке, но и всем вокруг. Яркие краски и нежные оттенки созданы, чтобы напоминать о том, что красота — в простых вещах. Каждый цветок в этом букете — маленькое произведение искусства.',
+        quote: 'Подари себе немного счастья — окружи себя цветами, которые будут радовать каждый день.',
+        img: 'https://picsum.photos/seed/bouquetinspire/600/400'
+      },
+      {
+        title: 'Терраса с видом на горы',
+        tag: 'Интерьер',
+        description: 'Летняя терраса, где можно забыть о времени. Мягкий свет, свежий воздух и аромат цветов создают атмосферу уюта и спокойствия. Идеальное место, чтобы встретить закат с бокалом лимонада или чашкой чая в компании близких.',
+        quote: 'Здесь каждый вдох наполняет энергией, а каждый взгляд — вдохновением.',
+        img: 'https://picsum.photos/seed/terraceview/600/400'
+      },
+      {
+        title: 'Авторский десерт',
+        tag: 'Кулинария',
+        description: 'Нежные десерты, которые тают во рту, и ароматный кофе — идеальное завершение любого дня. Наши кондитеры вкладывают душу в каждое пирожное, создавая настоящие шедевры. Это не просто десерт, это маленький праздник для ваших вкусовых рецепторов.',
+        quote: 'Позвольте себе сладкое мгновение — вы это заслужили.',
+        img: 'https://picsum.photos/seed/dessertart/600/400'
+      },
+      {
+        title: 'Сухоцветы, которые живут вечно',
+        tag: 'Декор',
+        description: 'Вечные цветы, которые не требуют ухода, но дарят тепло и уют круглый год. Сухоцветы — это искусство сохранения красоты. Они напоминают о лете даже в самые холодные дни и становятся изюминкой любого интерьера.',
+        quote: 'Красота, которая не увядает — как память о самых тёплых моментах.',
+        img: 'https://picsum.photos/seed/driedflowers/600/400'
+      },
+      {
+        title: 'Зимний вечер в Forest',
+        tag: 'Атмосфера',
+        description: 'Когда за окном метель, а внутри — уют, тепло и аромат свежей выпечки. Зимний вечер в Forest — это сказка, где можно укрыться от холода, насладиться горячим шоколадом и почувствовать себя в безопасности. Огни, свечи и улыбки — всё это ждёт вас.',
+        quote: 'Согрейся не только телом, но и душой — приходи к нам в холодный вечер.',
+        img: 'https://picsum.photos/seed/winterforest/600/400'
+      },
+      {
+        title: 'Кофе и книга',
+        tag: 'Досуг',
+        description: 'Иногда лучший отдых — это сесть с чашкой любимого напитка и интересной книгой. В нашей уютной атмосфере время течёт незаметно. Мы создали пространство, где можно отключиться от суеты и погрузиться в мир историй и ароматов.',
+        quote: 'Хорошая книга и идеальный кофе — лучшее лекарство от суеты.',
+        img: 'https://picsum.photos/seed/coffeebook/600/400'
+      }
+    ];
+
+    // ----- ДАННЫЕ ЦВЕТОВ -----
+    const flowers = [
+      {
+        name: 'Ромашка полевая',
+        description: 'Простой и искренний цветок, который дарит тепло и уют. Символ чистоты и нежности.',
+        price: 'от 450 ₽',
+        badge: 'Простые',
+        img: 'https://picsum.photos/seed/daisy/600/600'
+      },
+      {
+        name: 'Тюльпан весенний',
+        description: 'Яркий и жизнерадостный, напоминает о первых тёплых днях. Цветок надежды и обновления.',
+        price: 'от 550 ₽',
+        badge: 'Простые',
+        img: 'https://picsum.photos/seed/tulip/600/600'
+      },
+      {
+        name: 'Лаванда горная',
+        description: 'Нежный аромат и успокаивающий фиолетовый оттенок. Идеально для создания атмосферы уюта.',
+        price: 'от 750 ₽',
+        badge: 'Изящные',
+        img: 'https://picsum.photos/seed/lavender/600/600'
+      },
+      {
+        name: 'Пион махровый',
+        description: 'Роскошный и пышный цветок, который привлекает внимание. Символ богатства и счастья.',
+        price: 'от 950 ₽',
+        badge: 'Изящные',
+        img: 'https://picsum.photos/seed/peony/600/600'
+      },
+      {
+        name: 'Гортензия голубая',
+        description: 'Величественный цветок с крупными соцветиями. Символ искренности и глубоких чувств.',
+        price: 'от 1200 ₽',
+        badge: 'Эксклюзив',
+        img: 'https://picsum.photos/seed/hydrangea/600/600'
+      },
+      {
+        name: 'Роза эфирная',
+        description: 'Классическая красота с неповторимым ароматом. Цветок страсти, любви и совершенства.',
+        price: 'от 1500 ₽',
+        badge: 'Эксклюзив',
+        img: 'https://picsum.photos/seed/rose/600/600'
+      },
+      {
+        name: 'Орхидея королевская',
+        description: 'Утончённая экзотика, которая завораживает своей красотой. Цветок силы, благородства и роскоши.',
+        price: 'от 2000 ₽',
+        badge: 'Незабываемые',
+        img: 'https://picsum.photos/seed/orchid/600/600'
+      }
+    ];
+
     // ----- ДАННЫЕ МЕНЮ -----
     const menuData = [
       { category: 'Классический кофе', items: [
@@ -835,6 +1178,7 @@
     // ----- DOM -----
     const pages = {
       home: document.getElementById('page-home'),
+      gallery: document.getElementById('page-gallery'),
       menu: document.getElementById('page-menu'),
       bouquets: document.getElementById('page-bouquets'),
       contacts: document.getElementById('page-contacts')
@@ -844,6 +1188,88 @@
     const navList = document.getElementById('navLinks');
     const modal = document.getElementById('orderModal');
     const toast = document.getElementById('toastMessage');
+
+    // ----- RENDER GALLERY -----
+    function renderGallery() {
+      const container = document.getElementById('galleryGrid');
+      container.innerHTML = '';
+      galleryData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'gallery-card';
+
+        const img = document.createElement('img');
+        img.className = 'gallery-img';
+        img.src = item.img;
+        img.alt = item.title;
+        img.loading = 'lazy';
+        card.appendChild(img);
+
+        const body = document.createElement('div');
+        body.className = 'gallery-body';
+
+        const tag = document.createElement('div');
+        tag.className = 'gallery-tag';
+        tag.textContent = item.tag;
+
+        const title = document.createElement('h3');
+        title.textContent = item.title;
+
+        const desc = document.createElement('p');
+        desc.textContent = item.description;
+
+        const quote = document.createElement('div');
+        quote.className = 'gallery-quote';
+        quote.textContent = '✦ ' + item.quote;
+
+        body.appendChild(tag);
+        body.appendChild(title);
+        body.appendChild(desc);
+        body.appendChild(quote);
+        card.appendChild(body);
+        container.appendChild(card);
+      });
+    }
+
+    // ----- RENDER FLOWERS -----
+    function renderFlowers() {
+      const container = document.getElementById('flowerPreview');
+      container.innerHTML = '';
+      flowers.forEach((flower, index) => {
+        const item = document.createElement('div');
+        item.className = 'flower-item';
+        item.dataset.index = index;
+
+        const imgDiv = document.createElement('div');
+        imgDiv.className = 'flower-img';
+        const img = document.createElement('img');
+        img.src = flower.img;
+        img.alt = flower.name;
+        img.loading = 'lazy';
+        imgDiv.appendChild(img);
+
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'flower-info';
+        const badge = document.createElement('div');
+        badge.className = 'badge';
+        badge.textContent = flower.badge;
+        const title = document.createElement('h3');
+        title.textContent = flower.name;
+        const desc = document.createElement('p');
+        desc.textContent = flower.description;
+        const price = document.createElement('div');
+        price.className = 'price-tag';
+        price.textContent = flower.price;
+
+        infoDiv.appendChild(badge);
+        infoDiv.appendChild(title);
+        infoDiv.appendChild(desc);
+        infoDiv.appendChild(price);
+
+        item.appendChild(imgDiv);
+        item.appendChild(infoDiv);
+        container.appendChild(item);
+      });
+    }
 
     // ----- RENDER MENU -----
     function renderMenu() {
@@ -929,6 +1355,26 @@
       });
     }
 
+    // ----- SCROLL ANIMATION -----
+    function setupFlowerAnimations() {
+      const flowerItems = document.querySelectorAll('.flower-item');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.dataset.index) || 0;
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 120);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      flowerItems.forEach(item => observer.observe(item));
+    }
+
     // ----- NAVIGATION -----
     function navigate(pageId) {
       Object.values(pages).forEach(p => p.classList.remove('active'));
@@ -941,6 +1387,10 @@
 
       navList.classList.remove('open');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (pageId === 'home') {
+        setTimeout(setupFlowerAnimations, 300);
+      }
     }
 
     // ----- MODAL / TOAST -----
@@ -1006,9 +1456,18 @@
     });
 
     // ----- INIT -----
+    renderGallery();
+    renderFlowers();
     renderMenu();
     renderBouquets();
     navigate('home');
+
+    setTimeout(setupFlowerAnimations, 500);
+
+    window.addEventListener('resize', () => {
+      setTimeout(setupFlowerAnimations, 300);
+    });
+
   })();
 </script>
 <!-- 
@@ -1016,7 +1475,9 @@
   - Адрес: строка "г. Шерегеш, ул. Центральная, д. 1" (раздел Контакты)
   - Телефон: "+7 (999) 123-45-67" (раздел Контакты)
   - Ссылка на 2ГИС: в обработчике клика на кнопку "Проложить маршрут"
-  - Изображения-заглушки: picsum.photos, можно заменить на свои URL
+  - Изображения: picsum.photos, можно заменить на свои URL
+  - Данные галереи: массив galleryData (можно менять заголовки, описания, цитаты)
+  - Кнопка "Смотреть галерею" на главной ведёт на страницу Галерея
 -->
 </body>
 </html>
