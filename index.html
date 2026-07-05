@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2D4A22">
+  <meta name="description" content="Forest — бутик цветов и кофе в Шерегеше. Букеты из живых цветов, авторские напитки, уютная терраса.">
+  <meta property="og:title" content="Forest — цветы и кофе в Шерегеше">
+  <meta property="og:description" content="Букеты из живых цветов, авторские напитки и уютная терраса.">
+  <meta property="og:image" content="https://i.ibb.co/Rp2mQzb3/image-glav.jpg">
+  <title>Forest — цветы и кофе в Шерегеше</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://i.ibb.co/nM69BzJq/favicon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Основные стили -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container">
+    <a href="#" class="logo" id="logoLink" aria-label="Forest - Главная">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M12 2L2 7l10 5 10-5-10-5z" fill="var(--color-secondary)"/>
+        <path d="M2 17l10 5 10-5" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Forest<span>.</span>
+    </a>
+    <div class="nav-wrapper">
+      <button class="burger" id="burgerBtn" aria-label="Меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks" role="menubar">
+        <li><a href="#" data-page="home" class="active" role="menuitem">Главная</a></li>
+        <li><a href="#" data-page="gallery" role="menuitem">Галерея</a></li>
+        <li><a href="#" data-page="menu" role="menuitem">Напитки</a></li>
+        <li><a href="#" data-page="bouquets" role="menuitem">Букеты</a></li>
+        <li><a href="#" data-page="contacts" role="menuitem">Контакты</a></li>
+      </ul>
+      <button class="btn-order" id="headerOrderBtn" aria-label="Заказать">Заказать</button>
+    </div>
+  </div>
+</header>
+
+<!-- PAGES -->
+<main>
+  <!-- ГЛАВНАЯ -->
+  <section class="page active" id="page-home">
+    <div class="container">
+      <div class="hero">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="neon-text">Forest</span><span class="neon-dot">.</span>
+            <br>
+            <span>Бутик цветов и кофе в Шерегеше</span>
+          </h1>
+          <p class="hero-sub">Букеты, авторские напитки и уютная терраса</p>
+          <div class="hero-buttons">
+            <a href="#" class="btn" data-page="menu">Смотреть меню</a>
+            <a href="#" class="btn btn-outline" data-page="bouquets">Выбрать букет</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="flower-gallery">
+        <h2>Наши цветы</h2>
+        <p class="subtitle">От простых до незабываемых — каждый цветок рассказывает свою историю</p>
+        <p class="price-note">Цены указаны за букет</p>
+        <div class="flower-list" id="flowerPreview">
+          <!-- Цветы добавляются скриптом -->
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+          <a href="#" class="btn btn-rose" data-page="gallery">Смотреть галерею</a>
+        </div>
+      </div>
+
+      <div class="about-section" id="about-section">
+        <div>
+          <h2>О нас</h2>
+          <p>Forest — это место, где природа встречается с искусством. Мы создаем букеты из живых цветов, которые будут радовать вас годами, и готовим напитки с душой. Летом ждем вас на уютной террасе, где можно насладиться кофе в компании своего питомца. Доставка по Шерегешу — для вашего удобства.</p>
+        </div>
+        <div class="features">
+          <div class="feature-item"><span class="icon">🌾</span> Живые цветы ручной работы</div>
+          <div class="feature-item"><span class="icon">☕</span> Напитки на любой вкус</div>
+          <div class="feature-item"><span class="icon">🌿</span> Терраса и свежий воздух</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ГАЛЕРЕЯ -->
+  <section class="page" id="page-gallery">
+    <div class="container">
+      <h2 class="section-title">Наша галерея</h2>
+      <p class="section-sub">Каждое фото — это история, наполненная теплом, ароматами и вдохновением</p>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Галерея добавляется скриптом -->
+      </div>
+    </div>
+  </section>
+
+  <!-- МЕНЮ -->
+  <section class="page" id="page-menu">
+    <div class="container">
+      <h2 class="section-title">Наше меню</h2>
+      <p class="section-sub">Классика, авторские рецепты и сезонные новинки</p>
+      <div id="menuContainer"></div>
+    </div>
+  </section>
+
+  <!-- БУКЕТЫ -->
+  <section class="page" id="page-bouquets">
+    <div class="container">
+      <h2 class="section-title">Букеты из живых цветов</h2>
+      <p class="section-sub">Живая энергия вместо вечного пластика. Выбирайте цветы, которые растут, а не пылятся.</p>
+      <div class="card-grid" id="bouquetGrid"></div>
+    </div>
+  </section>
+
+  <!-- АКЦИИ -->
+  <section class="page" id="page-promotions">
+    <div class="container">
+      <h2 class="section-title">Акции и специальные предложения</h2>
+      <p class="section-sub">Следите за обновлениями — скоро здесь появятся выгодные предложения для наших гостей!</p>
+      <div style="background: var(--color-bg-card); border-radius: var(--radius); padding: 40px; text-align: center; box-shadow: var(--shadow-md); margin-top: 20px;">
+        <p style="font-size: 1.3rem; color: var(--color-secondary);">🌿 В разработке</p>
+        <p style="color: #5f7a5a; margin-top: 8px;">Мы готовим для вас сюрпризы. Подпишитесь на наши соцсети, чтобы не пропустить!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section class="page" id="page-contacts">
+    <div class="container">
+      <h2 class="section-title">Как нас найти</h2>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-item">
+            <strong>Адрес</strong>
+            <div class="value">г. Шерегеш, ул. Центральная, д. 1</div>
+          </div>
+          <div class="contact-item">
+            <strong>Режим работы</strong>
+            <div class="value">Ежедневно с 9:00 до 21:00</div>
+          </div>
+          <div class="contact-item">
+            <strong>Телефон</strong>
+            <div class="value">+7 (999) 123-45-67</div>
+          </div>
+          <div class="contact-item">
+            <strong>Способы оплаты</strong>
+            <div class="value">Оплата картой, наличный расчет, оплата по QR-коду</div>
+          </div>
+        </div>
+        <div class="map-placeholder">
+          <div style="font-size: 1.1rem; font-weight: 500;"><div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/org/tsvetochny_butik_florentsiya/3998479707/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Цветочный Бутик Флоренция</a><a href="https://yandex.ru/maps/11282/kemerovo-oblast/category/flower_shop/184108325/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Магазин цветов в Кемеровской области (Кузбассе)</a><iframe src="https://yandex.ru/map-widget/v1/?ll=87.979963%2C52.927565&mode=poi&poi%5Bpoint%5D=87.978196%2C52.927084&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D3998479707&z=17.8" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div></div>
+          <a href="https://2gis.ru/sheregesh/search/%D1%86%D0%B2%D0%B5%D1%82%D1%8B%20%D1%88%D0%B5%D1%80%D0%B5%D0%B3%D0%B5%D1%88/firm/70000001115402333?m=87.978487%2C52.927045%2F18.56&relief=on" class="btn" target="_blank">Проложить маршрут</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <ul>
+          <li><a href="#" data-page="home">Главная</a></li>
+          <li><a href="#" data-page="gallery">Галерея</a></li>
+          <li><a href="#" data-page="menu">Напитки</a></li>
+          <li><a href="#" data-page="bouquets">Букеты</a></li>
+          <li><a href="#" data-page="contacts">Контакты</a></li>
+          <li><a href="#" data-page="home" data-scroll="about-section">О нас</a></li>
+          <li><a href="#" data-page="promotions">Акции</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Контакты</h4>
+        <p>+7 (999) 123-45-67</p>
+        <p>г. Шерегеш, ул. Центральная, д. 1</p>
+        <p style="margin-top: 12px; opacity: 0.7;">Ежедневно 9:00–21:00</p>
+      </div>
+      <div class="footer-col">
+        <h4>О нас</h4>
+        <p>Forest — это место, где природа встречается с искусством. Мы создаём букеты из живых цветов и готовим кофе с душой.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">© Forest. 2025 – <span id="currentYear"></span></p>
+      <p class="footer-disclaimer">Фото являются иллюстративными и могут отличаться от конечного результата.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <button class="modal-close" id="modalCloseBtn">&times;</button>
+    <h2>Оставьте заявку</h2>
+    <form id="orderForm" novalidate>
+      <input type="hidden" id="formProduct" value="">
+      <label for="formName">Имя</label>
+      <input type="text" id="formName" placeholder="Ваше имя" required>
+      <div class="error-message" id="nameError">Пожалуйста, введите имя</div>
+
+      <label for="formPhone">Телефон</label>
+      <input type="text" id="formPhone" placeholder="+7 (___) ___-__-__" required>
+      <div class="error-message" id="phoneError">Введите корректный номер телефона (минимум 10 цифр)</div>
+
+      <label for="formComment">Комментарий</label>
+      <textarea id="formComment" rows="3" placeholder="Ваши пожелания"></textarea>
+
+      <button type="submit" class="btn" id="formSubmitBtn">Отправить</button>
+    </form>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toastMessage">Спасибо! Мы свяжемся с вами в ближайшее время.</div>
+
+<!-- Подключаем конфиг с токеном (не публиковать!) и основной скрипт -->
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
